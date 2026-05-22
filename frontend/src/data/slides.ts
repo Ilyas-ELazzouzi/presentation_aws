@@ -316,21 +316,96 @@ export const timelineSteps: TimelineStep[] = [
   { label: 'Push', detail: '3 repos ECR' },
 ]
 
-export const conclusionQuote =
-  'Un pipeline DevOps robuste ne se mesure pas à la vitesse du build, mais à la confiance qu\'on peut avoir à chaque merge.'
-
-export const bilanPoints = [
-  'Pipeline GitLab CI en 4 stages avec jobs parallèles',
-  'Scan Trivy sur 4 images avec reporting par sévérité',
-  'Publication automatisée vers 3 dépôts AWS ECR',
-  'Variables protégées et branches main/develop',
+export const albArchitectureBullets = [
+  'Utilisateur → ALB (DNS stable) → EC2 prod:80 → nginx → frontend/backend → PostgreSQL',
+  'ALB internet-facing sur 2 subnets publics multi-AZ pour la haute disponibilité',
+  "DNS ALB stable : plus dépendant de l'IP EC2 qui change à chaque infra:ec2",
+  'Preprod : accès direct par IP publique (preprod-1 / preprod-2), hors ALB',
+  'Security group dédié hetic-alb-sg : ports 80/443 ouverts depuis Internet',
+  'SG EC2 : port 80 autorisé uniquement depuis le SG de l\'ALB',
 ]
 
-export const nextSteps = [
-  'Déploiement ECS/Fargate depuis les images ECR',
-  'Environnements review apps par MR',
-  'Notifications Slack sur échec de pipeline',
-  'Rotation automatique des credentials AWS',
+export const infraEc2Resources = [
+  { label: 'VPC 10.0.0.0/16', detail: 'DNS hostnames + 2 subnets publics (AZ a/b)', color: '#00D4FF' },
+  { label: 'Internet Gateway', detail: 'Route table 0.0.0.0/0 → IGW', color: '#3B82F6' },
+  { label: '3 × EC2 t3.small', detail: 'hetic-prod · preprod-1 · preprod-2 + user-data Docker', color: '#10B981' },
+  { label: 'ALB hetic-alb', detail: 'Target group hetic-prod-tg → instance prod uniquement', color: '#FF9900' },
+  { label: 'hetic-alb-sg + hetic-sg', detail: 'ALB :80/443 Internet · EC2 :80 depuis ALB SG', color: '#F59E0B' },
+  { label: 'instances.env', detail: 'IPs EC2 + ALB_DNS pour le stage deploy', color: '#7C3AED' },
 ]
 
-export const TOTAL_SLIDES = 14
+export const deployJobs = [
+  {
+    id: 'deploy:prod',
+    title: 'deploy:prod',
+    branch: 'main (default)',
+    host: 'EC2_HOST_PROD',
+    publicUrl: 'ALB_DNS (PUBLIC_URL)',
+    color: '#FF9900',
+    viaAlb: true,
+  },
+  {
+    id: 'deploy:preprod-1',
+    title: 'deploy:preprod-1',
+    branch: 'develop · dev · feature/* · MR',
+    host: 'EC2_HOST_PREPROD_1',
+    publicUrl: 'IP publique directe',
+    color: '#7C3AED',
+    viaAlb: false,
+  },
+  {
+    id: 'deploy:preprod-2',
+    title: 'deploy:preprod-2',
+    branch: 'develop · dev · feature/* · MR',
+    host: 'EC2_HOST_PREPROD_2',
+    publicUrl: 'IP publique directe',
+    color: '#10B981',
+    viaAlb: false,
+  },
+]
+
+export const pullAndRunSteps = [
+  { step: '01', label: 'Attente SSH + user-data', detail: 'Docker & compose installés sur EC2' },
+  { step: '02', label: 'SCP compose + .env', detail: 'VITE_FRONTEND_API_URL = PUBLIC_URL/api/v1' },
+  { step: '03', label: 'Login ECR depuis le runner', detail: 'Credentials GitLab → docker login sur EC2' },
+  { step: '04', label: 'Pull images par SHA', detail: 'frontend · backend · devops depuis ECR' },
+  { step: '05', label: 'docker compose up -d', detail: 'Port 80 → nginx:8088 · healthcheck curl :80' },
+]
+
+export const extendedPipelineStages = [
+  { id: 'lint', label: 'LINT', color: '#F59E0B' },
+  { id: 'test', label: 'TEST', color: '#10B981' },
+  { id: 'build', label: 'BUILD', color: '#3B82F6' },
+  { id: 'push', label: 'PUSH', color: '#7C3AED' },
+  { id: 'infra', label: 'INFRA', color: '#FF9900' },
+  { id: 'deploy', label: 'DEPLOY', color: '#00D4FF' },
+]
+
+export const deployCodeSnippets = {
+  albListener: `aws elbv2 create-load-balancer \\
+  --name hetic-alb \\
+  --subnets $SUBNET_A $SUBNET_B \\
+  --scheme internet-facing
+
+aws elbv2 register-targets \\
+  --target-group-arn $TG_ARN \\
+  --targets Id=$PROD_ID`,
+
+  deployProd: `deploy:prod:
+  script:
+    - source instances.env
+    - export EC2_HOST=$EC2_HOST_PROD
+    - export PUBLIC_URL="\${ALB_DNS:-$EC2_HOST_PROD}"`,
+
+  deployPreprod: `deploy:preprod-1:
+  script:
+    - source instances.env
+    - export EC2_HOST=$EC2_HOST_PREPROD_1
+    # PUBLIC_URL = IP EC2 (pas d'ALB)`,
+
+  pullAndRun: `ssh ec2-user@$EC2_HOST 'docker pull ...'
+docker compose -f /opt/hetic/docker-compose.yml up -d
+curl -sf http://127.0.0.1/  # healthcheck :80`,
+}
+
+export const TOTAL_SLIDES = 18
