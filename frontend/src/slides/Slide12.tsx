@@ -24,11 +24,11 @@ export function Slide12() {
                 <Lock className="h-5 w-5 text-neon" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-mono text-sm text-slate-300">{card.name}</p>
+                <p className="font-dm text-sm text-slate-300">{card.name}</p>
                 <p className="font-mono text-lg tracking-widest text-slate-500">{card.masked}</p>
               </div>
               {card.protected && (
-                <span className="rounded-full border border-push/50 bg-push/15 px-3 py-1 text-xs font-semibold text-push">
+                <span className="font-dm rounded-full border border-push/50 bg-push/15 px-3 py-1 text-xs font-semibold text-push">
                   Protected
                 </span>
               )}

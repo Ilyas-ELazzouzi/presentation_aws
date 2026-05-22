@@ -1,30 +1,31 @@
-import { motion } from 'framer-motion'
-import { SlideShell } from '../components/ui/SlideShell'
-
-const contextPoints = [
-  'Monorepo Docker Compose : frontend React, backend API, nginx, outils DevOps',
-  'GitLab CI comme orchestrateur unique des stages lint → push',
-  'Registry cible : Amazon ECR (3 repositories dédiés)',
-  'Contrainte : zéro déploiement manuel sur la branche main',
-]
+import { ContextItem } from '../components/ContextItem'
+import { TechStackVisual } from '../components/TechStackVisual'
+import { contextItems } from '../data/slides'
 
 export function Slide03() {
   return (
-    <SlideShell title="Contexte" subtitle="Projet fil rouge — infrastructure as pipeline">
-      <ul className="flex h-full flex-col justify-center gap-5">
-        {contextPoints.map((point, i) => (
-          <motion.li
-            key={point}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.15 + i * 0.12 }}
-            className="glass-panel flex items-start gap-4 rounded-xl px-5 py-4 text-slate-300 presentation:text-lg"
-          >
-            <span className="mt-0.5 shrink-0 font-bold text-neon">{String(i + 1).padStart(2, '0')}</span>
-            {point}
-          </motion.li>
-        ))}
-      </ul>
-    </SlideShell>
+    <div className="flex h-full w-full flex-col gap-8 px-12 py-10 presentation:px-16 presentation:py-12">
+      <header className="shrink-0">
+        <span className="font-dm text-[0.7rem] font-medium uppercase tracking-[0.15em] text-neon">
+          Hetic · Groupe 6
+        </span>
+        <h2 className="font-syne mt-1 text-4xl font-bold text-[#EEF2FF] presentation:text-5xl presentation-lg:text-[3rem]">
+          Contexte
+        </h2>
+        <p className="font-dm mt-1 text-[0.9rem] text-[#64748B]">
+          Projet fil rouge — infrastructure as pipeline
+        </p>
+      </header>
+
+      <div className="grid min-h-0 flex-1 grid-cols-[55%_45%] items-start gap-10">
+        <div className="flex flex-col gap-3">
+          {contextItems.map((item, i) => (
+            <ContextItem key={item.number} {...item} index={i} />
+          ))}
+        </div>
+
+        <TechStackVisual />
+      </div>
+    </div>
   )
 }

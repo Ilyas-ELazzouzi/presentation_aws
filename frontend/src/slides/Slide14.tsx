@@ -12,8 +12,8 @@ export function Slide14() {
             animate={{ opacity: 1, x: 0 }}
             className="glass-panel rounded-2xl p-5"
           >
-            <h3 className="mb-3 font-bold text-neon">Bilan</h3>
-            <ul className="space-y-2 text-sm text-slate-300 presentation:text-base">
+            <h3 className="font-syne mb-3 font-bold text-neon">Bilan</h3>
+            <ul className="font-dm space-y-2 text-sm text-slate-300 presentation:text-base">
               {bilanPoints.map((point, i) => (
                 <motion.li
                   key={point}
@@ -33,8 +33,8 @@ export function Slide14() {
             animate={{ opacity: 1, x: 0 }}
             className="glass-panel rounded-2xl p-5"
           >
-            <h3 className="mb-3 font-bold text-push">Next steps</h3>
-            <ul className="space-y-2 text-sm text-slate-300 presentation:text-base">
+            <h3 className="font-syne mb-3 font-bold text-push">Next steps</h3>
+            <ul className="font-dm space-y-2 text-sm text-slate-300 presentation:text-base">
               {nextSteps.map((point, i) => (
                 <motion.li
                   key={point}
@@ -58,16 +58,16 @@ export function Slide14() {
           className="relative mx-auto my-4 max-w-3xl px-8 text-center"
         >
           <span
-            className="pointer-events-none absolute -left-2 -top-6 font-serif text-7xl leading-none text-neon opacity-10 presentation:text-8xl"
+            className="font-syne pointer-events-none absolute -left-2 -top-6 text-7xl leading-none text-neon opacity-10 presentation:text-8xl"
             aria-hidden
           >
             "
           </span>
-          <p className="relative z-10 text-sm italic leading-relaxed text-slate-300 presentation:text-base presentation-lg:text-lg">
+          <p className="font-dm relative z-10 text-sm italic leading-relaxed text-[#64748B] presentation:text-base presentation-lg:text-lg">
             {conclusionQuote}
           </p>
           <span
-            className="pointer-events-none absolute -right-2 -bottom-8 font-serif text-7xl leading-none text-neon opacity-10 presentation:text-8xl"
+            className="font-syne pointer-events-none absolute -right-2 -bottom-8 text-7xl leading-none text-neon opacity-10 presentation:text-8xl"
             aria-hidden
           >
             "
@@ -78,7 +78,7 @@ export function Slide14() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="flex shrink-0 justify-center gap-6 border-t border-white/5 pt-3 text-sm text-slate-400"
+          className="font-dm flex shrink-0 justify-center gap-6 border-t border-white/5 pt-3 text-sm text-[#64748B]"
         >
           {teamData.map((m) => (
             <span key={m.name}>

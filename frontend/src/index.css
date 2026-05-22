@@ -9,6 +9,8 @@
   --color-test: #10b981;
   --color-build: #3b82f6;
   --color-push: #7c3aed;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-syne: Syne, system-ui, sans-serif;
 }
 
 *,
@@ -26,10 +28,18 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   background: radial-gradient(ellipse at 20% 0%, #0d1f3c 0%, #060b14 45%, #040810 100%);
-  color: #e2e8f0;
+  color: #cbd5e1;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Syne, system-ui, sans-serif;
+  color: #eef2ff;
 }
 
 .presentation-root {
@@ -37,6 +47,15 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.font-syne {
+  font-family: 'Syne', system-ui, sans-serif;
+}
+
+.font-dm {
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 .glass-panel {

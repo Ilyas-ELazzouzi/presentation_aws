@@ -14,7 +14,7 @@ export function StageBadge({ label, color, size = 'md', delay = 0 }: StageBadgeP
       initial={{ opacity: 0, scale: 0.8, x: -24 }}
       animate={{ opacity: 1, scale: 1, x: 0 }}
       transition={{ delay, type: 'spring', stiffness: 280, damping: 22 }}
-      className={`flex items-center justify-center rounded-xl border font-bold tracking-widest ${
+      className={`font-syne flex items-center justify-center rounded-xl border font-bold tracking-widest ${
         isLg
           ? 'h-14 min-w-[5.5rem] px-5 text-sm presentation:h-16 presentation:text-base presentation-lg:h-[4.5rem] presentation-lg:text-lg'
           : 'h-9 min-w-[4rem] px-3 text-xs'

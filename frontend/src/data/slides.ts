@@ -1,12 +1,45 @@
+export type TeamIconName = 'GitBranch' | 'Box' | 'Cloud' | 'Shield'
+
 export interface TeamMember {
   name: string
   role: string
+  initials: string
+  color: string
+  icon: TeamIconName
+  skills: string[]
+  description: string
+}
+
+import type { LucideIconId } from '../utils/lucideIcons'
+
+export interface ContextItem {
+  number: string
+  text: string
+  icon: LucideIconId
+  color: string
+  tag: string
+}
+
+export interface TechStackEntry {
+  label: string
+  sublabel: string
+  color: string
+  icon: LucideIconId
 }
 
 export interface Objective {
   title: string
   description: string
-  icon: string
+  icon: LucideIconId
+  tags: string[]
+  color: string
+  number: string
+}
+
+export interface ObjectiveMetric {
+  value: string
+  label: string
+  color: string
 }
 
 export interface LintTool {
@@ -40,10 +73,42 @@ export interface VariableCard {
 }
 
 export const teamData: TeamMember[] = [
-  { name: 'Alexandre Martin', role: 'Pipeline & CI/CD' },
-  { name: 'Sarah Dubois', role: 'Sécurité & Trivy' },
-  { name: 'Lucas Bernard', role: 'Build & Docker' },
-  { name: 'Emma Petit', role: 'AWS ECR & Déploiement' },
+  {
+    name: 'Nabil Lmrabet',
+    role: 'CTO',
+    initials: 'NL',
+    color: '#00D4FF',
+    icon: 'GitBranch',
+    skills: ['GitLab CI', 'YAML', 'pipeline modulaire'],
+    description: 'Architecture du pipeline modulaire 4 stages et gestion des rules GitLab.',
+  },
+  {
+    name: 'Ilyas Elazzouzi',
+    role: 'Développeur',
+    initials: 'IE',
+    color: '#7C3AED',
+    icon: 'Box',
+    skills: ['Docker', 'Compose', 'Makefile'],
+    description: 'Mise en place du Docker Compose multi-services et automatisation locale.',
+  },
+  {
+    name: 'Gires Tientchu',
+    role: 'CEO',
+    initials: 'GT',
+    color: '#10B981',
+    icon: 'Cloud',
+    skills: ['AWS ECR', 'IAM', 'docker push'],
+    description: 'Configuration des dépôts ECR et gestion des credentials AWS en CI.',
+  },
+  {
+    name: 'Esso Assiah',
+    role: 'Développeur',
+    initials: 'EA',
+    color: '#F59E0B',
+    icon: 'Shield',
+    skills: ['Trivy', 'hadolint', 'shellcheck'],
+    description: 'Intégration des outils de scan et lint dans le pipeline de sécurité.',
+  },
 ]
 
 export const codeSnippets = {
@@ -108,22 +173,81 @@ export const pipelineChartData = [
   { name: 'Push', value: 15, color: '#7C3AED' },
 ]
 
+export const contextItems: ContextItem[] = [
+  {
+    number: '01',
+    text: 'Monorepo Docker Compose : frontend React, backend API, nginx, outils DevOps',
+    icon: 'Layers',
+    color: '#00D4FF',
+    tag: 'Docker Compose',
+  },
+  {
+    number: '02',
+    text: 'GitLab CI comme orchestrateur unique des stages lint → push',
+    icon: 'GitBranch',
+    color: '#7C3AED',
+    tag: 'GitLab CI',
+  },
+  {
+    number: '03',
+    text: 'Registry cible : Amazon ECR (3 repositories dédiés)',
+    icon: 'Cloud',
+    color: '#10B981',
+    tag: 'AWS ECR',
+  },
+  {
+    number: '04',
+    text: 'Contrainte : zéro déploiement manuel sur la branche main',
+    icon: 'Lock',
+    color: '#F59E0B',
+    tag: 'Automatisation',
+  },
+]
+
+export const techStack: TechStackEntry[] = [
+  { label: 'Docker', sublabel: 'Compose v2', color: '#2496ED', icon: 'Box' },
+  { label: 'GitLab CI', sublabel: 'Modulaire', color: '#FC6D26', icon: 'GitBranch' },
+  { label: 'nginx', sublabel: 'Reverse proxy', color: '#009639', icon: 'Globe' },
+  { label: 'AWS ECR', sublabel: '3 repos', color: '#FF9900', icon: 'Cloud' },
+  { label: 'PostgreSQL', sublabel: 'v16', color: '#336791', icon: 'Database' },
+  { label: 'Trivy', sublabel: '0.70', color: '#1904DA', icon: 'Shield' },
+]
+
 export const objectives: Objective[] = [
   {
+    icon: 'Zap',
     title: 'Automatiser le pipeline',
-    description: 'Lint, test, build et push déclenchés à chaque merge sur main.',
-    icon: '⚡',
+    description:
+      'Lint, test, build et push déclenchés à chaque merge sur main. Zéro intervention manuelle.',
+    tags: ['GitLab CI', '4 stages', 'modulaire'],
+    color: '#F59E0B',
+    number: '01',
   },
   {
+    icon: 'Shield',
     title: 'Sécuriser les images',
-    description: 'Scan Trivy systématique avec matrice sur les 4 images Docker.',
-    icon: '🛡️',
+    description:
+      'Scan Trivy systématique en matrice parallèle sur les 4 images Docker. Artefacts archivés.',
+    tags: ['Trivy 0.70', 'container_scanning', 'HIGH/CRITICAL'],
+    color: '#00D4FF',
+    number: '02',
   },
   {
+    icon: 'Cloud',
     title: 'Publier sur AWS ECR',
-    description: 'Push multi-branches vers les dépôts frontend, backend et devops.',
-    icon: '☁️',
+    description:
+      'Push multi-branches vers les dépôts frontend, backend et devops avec tag commit SHA.',
+    tags: ['AWS ECR', '3 repos', '$CI_COMMIT_SHORT_SHA'],
+    color: '#7C3AED',
+    number: '03',
   },
+]
+
+export const objectiveMetrics: ObjectiveMetric[] = [
+  { value: '4', label: 'Stages CI/CD', color: '#F59E0B' },
+  { value: '4', label: 'Images scannées', color: '#00D4FF' },
+  { value: '3', label: 'Repos ECR', color: '#7C3AED' },
+  { value: '100%', label: 'Automatisé', color: '#10B981' },
 ]
 
 export const challenges: Challenge[] = [

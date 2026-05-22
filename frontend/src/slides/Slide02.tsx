@@ -1,24 +1,26 @@
-import { motion } from 'framer-motion'
-import { SlideShell } from '../components/ui/SlideShell'
+import { TeamCard } from '../components/TeamCard'
 import { teamData } from '../data/slides'
 
 export function Slide02() {
   return (
-    <SlideShell title="Équipe projet" subtitle="4 membres — rôles DevOps">
-      <div className="grid h-full grid-cols-2 gap-4 presentation:gap-6">
+    <div className="flex h-full w-full flex-col gap-8 px-12 py-10 presentation:px-16 presentation:py-12 presentation-lg:gap-8">
+      <header className="flex shrink-0 items-end justify-between">
+        <div>
+          <span className="font-dm text-[0.7rem] font-medium uppercase tracking-[0.15em] text-neon">
+            Hetic · Groupe 6
+          </span>
+          <h2 className="font-syne mt-1 text-4xl font-bold text-[#EEF2FF] presentation:text-5xl presentation-lg:text-[3rem]">
+            Notre Équipe
+          </h2>
+        </div>
+        <span className="font-dm text-[0.85rem] text-[#64748B]">4 membres — rôles DevOps</span>
+      </header>
+
+      <div className="grid w-full grid-cols-4 items-start content-start gap-5">
         {teamData.map((member, i) => (
-          <motion.div
-            key={member.name}
-            initial={{ opacity: 0, x: i % 2 === 0 ? -24 : 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 + i * 0.1 }}
-            className="glass-panel flex flex-col justify-center rounded-2xl px-6 py-5"
-          >
-            <p className="text-lg font-semibold text-slate-100 presentation:text-xl">{member.name}</p>
-            <p className="mt-1 text-sm text-neon/90">{member.role}</p>
-          </motion.div>
+          <TeamCard key={member.name} {...member} index={i} />
         ))}
       </div>
-    </SlideShell>
+    </div>
   )
 }

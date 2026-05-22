@@ -8,7 +8,7 @@ export function Slide06() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="flex flex-wrap items-center justify-center gap-3 text-sm presentation:text-base presentation-lg:text-lg"
+          className="font-dm flex flex-wrap items-center justify-center gap-3 text-sm presentation:text-base presentation-lg:text-lg"
         >
           {['Commit', 'Lint', 'Test + Trivy', 'Build DinD', 'Push ECR'].map((step, i) => (
             <motion.span
@@ -18,7 +18,7 @@ export function Slide06() {
               transition={{ delay: 0.2 + i * 0.1 }}
               className="flex items-center gap-3"
             >
-              <span className="glass-panel rounded-lg px-4 py-2 font-semibold text-slate-200">{step}</span>
+              <span className="font-syne glass-panel rounded-lg px-4 py-2 font-semibold text-[#EEF2FF]">{step}</span>
               {i < 4 && <span className="text-neon">→</span>}
             </motion.span>
           ))}
@@ -27,7 +27,7 @@ export function Slide06() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-10 max-w-2xl text-center text-slate-500"
+          className="font-dm mt-10 max-w-2xl text-center text-[#64748B]"
         >
           Les slides suivantes détaillent chaque stage du pipeline CI/CD.
         </motion.p>

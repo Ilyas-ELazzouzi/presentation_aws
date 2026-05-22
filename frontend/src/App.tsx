@@ -100,7 +100,7 @@ function App() {
               aria-label={`Aller à la slide ${i + 1}`}
             />
           ))}
-          <span className="ml-3 font-mono text-xs text-slate-500">
+          <span className="font-dm ml-3 text-xs text-[#64748B]">
             {index + 1} / {TOTAL_SLIDES}
           </span>
         </div>

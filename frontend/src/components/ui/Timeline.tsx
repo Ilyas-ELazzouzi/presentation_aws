@@ -29,14 +29,14 @@ export function Timeline() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.9 + index * 0.18, type: 'spring', stiffness: 300 }}
-            className="z-10 flex h-8 w-8 items-center justify-center rounded-full border border-neon/50 bg-deep text-xs font-bold text-neon"
+            className="font-syne z-10 flex h-8 w-8 items-center justify-center rounded-full border border-neon/50 bg-deep text-xs font-bold text-neon"
           >
             {index + 1}
           </motion.div>
-          <p className="mt-2 text-center text-xs font-semibold text-slate-200 presentation:text-sm">
+          <p className="font-syne mt-2 text-center text-xs font-semibold text-[#EEF2FF] presentation:text-sm">
             {step.label}
           </p>
-          <p className="mt-0.5 text-center text-[10px] text-slate-500 presentation:text-xs">
+          <p className="font-dm mt-0.5 text-center text-[10px] text-[#64748B] presentation:text-xs">
             {step.detail}
           </p>
         </motion.div>

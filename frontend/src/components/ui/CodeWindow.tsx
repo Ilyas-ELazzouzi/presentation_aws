@@ -34,7 +34,7 @@ export function CodeWindow({
         <span className="h-3 w-3 rounded-full bg-danger/80" />
         <span className="h-3 w-3 rounded-full bg-lint/80" />
         <span className="h-3 w-3 rounded-full bg-success/80" />
-        <span className="ml-2 font-mono text-xs text-slate-400">{title}</span>
+        <span className="font-dm ml-2 text-xs text-[#64748B]">{title}</span>
       </div>
       <div className="min-h-0 flex-1 overflow-hidden text-[11px] presentation:text-xs presentation-lg:text-sm">
         <SyntaxHighlighter

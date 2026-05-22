@@ -10,11 +10,11 @@ export function Slide09() {
       <div className="flex h-full min-h-0 flex-col gap-3">
         <div className="min-h-0 basis-[40%] shrink-0">
           <div className="glass-panel h-full overflow-hidden rounded-xl">
-            <table className="w-full text-sm presentation:text-base">
+            <table className="font-dm w-full text-sm presentation:text-base">
               <thead>
                 <tr className="border-b border-white/10 bg-panel/80 text-neon">
-                  <th className="px-4 py-2.5 text-left">Image</th>
-                  <th className="px-4 py-2.5 text-left">Sévérités</th>
+                  <th className="font-syne px-4 py-2.5 text-left">Image</th>
+                  <th className="font-syne px-4 py-2.5 text-left">Sévérités</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,7 +35,7 @@ export function Slide09() {
         </div>
         <div className="flex min-h-0 flex-1 gap-3">
           <div className="glass-panel flex min-h-0 basis-[30%] flex-col rounded-xl p-3">
-            <p className="mb-1 shrink-0 text-center text-xs font-semibold text-slate-400">
+            <p className="font-dm mb-1 shrink-0 text-center text-xs font-semibold text-[#64748B]">
               Répartition pipeline
             </p>
             <div className="min-h-0 flex-1">

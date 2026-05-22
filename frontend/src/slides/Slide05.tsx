@@ -25,10 +25,10 @@ export function Slide05() {
               className="mb-3 h-12 w-12 rounded-xl"
               style={{ background: `${item.color}22`, boxShadow: `0 0 16px ${item.color}33` }}
             />
-            <p className="font-bold" style={{ color: item.color }}>
+            <p className="font-syne font-bold" style={{ color: item.color }}>
               {item.name}
             </p>
-            <p className="mt-2 text-center text-xs text-slate-400 presentation:text-sm">{item.desc}</p>
+            <p className="font-dm mt-2 text-center text-xs text-[#64748B] presentation:text-sm">{item.desc}</p>
           </motion.div>
         ))}
       </div>

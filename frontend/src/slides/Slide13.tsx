@@ -12,12 +12,12 @@ export function Slide13() {
             <GlassCard key={c.problem} delay={0.15 + i * 0.1} className="flex flex-col">
               <div className="flex items-start gap-2">
                 <span className="text-lg text-danger">⚠️</span>
-                <p className="text-sm leading-snug text-slate-300 presentation:text-base">{c.problem}</p>
+                <p className="font-dm text-sm leading-snug text-slate-300 presentation:text-base">{c.problem}</p>
               </div>
               <div className="my-3 h-px bg-white/10" />
               <div className="flex items-start gap-2">
                 <span className="text-lg text-success">✅</span>
-                <p className="text-sm leading-snug text-slate-400 presentation:text-base">{c.solution}</p>
+                <p className="font-dm text-sm leading-snug text-[#64748B] presentation:text-base">{c.solution}</p>
               </div>
             </GlassCard>
           ))}

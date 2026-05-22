@@ -18,7 +18,9 @@ export default {
         success: '#22C55E',
       },
       fontFamily: {
-        sans: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        dm: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        syne: ['Syne', 'system-ui', 'sans-serif'],
         mono: ['"Cascadia Code"', '"Fira Code"', 'Consolas', 'monospace'],
       },
       boxShadow: {
